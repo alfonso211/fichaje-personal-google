@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+<title>Fichaje de Personal</title>
+<meta name="theme-color" content="#1e5ba8" />
+<link rel="manifest" href="manifest.json" />
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Fichaje" />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<header class="cabecera">
+  <span class="cabecera-titulo">Fichaje de Personal</span>
+</header>
+
+<main>
+
+  <section id="pantalla-vincular" class="pantalla">
+    <div class="tarjeta">
+      <h1>Vincular dispositivo</h1>
+      <p>Antes de fichar, este dispositivo debe conectarse una vez con la cuenta de Google que da acceso a la hoja de cálculo de Google Sheets.</p>
+      <button id="btn-vincular" class="btn-principal">Conectar con Google</button>
+    </div>
+  </section>
+
+  <section id="pantalla-empleados" class="pantalla oculto">
+    <h1>¿Quién eres?</h1>
+    <div id="lista-empleados" class="lista-empleados"></div>
+    <button id="btn-abrir-admin" class="btn-enlace">Administración</button>
+    <button id="btn-desvincular" class="btn-enlace">Desvincular este dispositivo</button>
+  </section>
+
+  <section id="pantalla-pin" class="pantalla oculto">
+    <h1 id="pin-empleado-nombre">Empleado</h1>
+    <p class="pin-puntos" id="pin-puntos">····</p>
+    <div class="teclado-numerico">
+      <button class="tecla-num" data-num="1">1</button>
+      <button class="tecla-num" data-num="2">2</button>
+      <button class="tecla-num" data-num="3">3</button>
+      <button class="tecla-num" data-num="4">4</button>
+      <button class="tecla-num" data-num="5">5</button>
+      <button class="tecla-num" data-num="6">6</button>
+      <button class="tecla-num" data-num="7">7</button>
+      <button class="tecla-num" data-num="8">8</button>
+      <button class="tecla-num" data-num="9">9</button>
+      <button id="btn-pin-borrar" class="tecla-especial">⌫</button>
+      <button class="tecla-num" data-num="0">0</button>
+      <button id="btn-pin-entrar" class="tecla-especial tecla-ok">✓</button>
+    </div>
+    <button id="btn-pin-cancelar" class="btn-enlace">Cancelar</button>
+  </section>
+
+  <section id="pantalla-fichaje" class="pantalla oculto">
+    <h1 id="fichaje-empleado-nombre">Empleado</h1>
+    <p id="fichaje-estado" class="estado-dia">Consultando…</p>
+    <div class="botones-fichaje">
+      <button id="btn-entrada" class="btn-fichar btn-entrada" disabled>Entrada</button>
+      <button id="btn-descanso" class="btn-fichar btn-descanso" disabled>Descanso</button>
+      <button id="btn-salida" class="btn-fichar btn-salida" disabled>Salida</button>
+    </div>
+    <button id="btn-cambiar-empleado" class="btn-enlace">Cambiar de empleado</button>
+  </section>
+
+  <section id="pantalla-admin-login" class="pantalla oculto">
+    <div class="tarjeta">
+      <h1>Acceso de administrador</h1>
+      <label class="etiqueta-campo" for="admin-usuario">Usuario</label>
+      <input type="text" id="admin-usuario" class="campo-texto" autocomplete="off" />
+      <label class="etiqueta-campo" for="admin-clave">Contraseña</label>
+      <input type="password" id="admin-clave" class="campo-texto" autocomplete="off" />
+      <button id="btn-admin-entrar" class="btn-principal">Entrar</button>
+      <button id="btn-admin-cancelar" class="btn-enlace">Cancelar</button>
+    </div>
+  </section>
+
+  <section id="pantalla-admin" class="pantalla oculto">
+    <h1>Panel de administración</h1>
+
+    <h2 class="titulo-seccion-admin">Empleados</h2>
+    <div id="lista-empleados-admin" class="lista-empleados-admin"></div>
+
+    <div class="form-nuevo-empleado">
+      <h3>Añadir empleado</h3>
+      <input type="text" id="nuevo-empleado-nombre" class="campo-texto" placeholder="Nombre" />
+      <input type="text" id="nuevo-empleado-apellidos" class="campo-texto" placeholder="Apellidos" />
+      <input type="text" id="nuevo-empleado-empresa" class="campo-texto" placeholder="Empresa" />
+      <input type="text" id="nuevo-empleado-pin" class="campo-texto" placeholder="PIN" inputmode="numeric" />
+      <button id="btn-anadir-empleado" class="btn-principal">Añadir empleado</button>
+    </div>
+
+    <h2 class="titulo-seccion-admin">Fichajes recientes</h2>
+    <button id="btn-cargar-fichajes" class="btn-secundario">Cargar fichajes recientes</button>
+    <div id="lista-fichajes-admin" class="lista-fichajes-admin"></div>
+
+    <button id="btn-admin-volver" class="btn-enlace">Volver</button>
+  </section>
+
+</main>
+
+<div id="mensaje" class="mensaje oculto"><span id="mensaje-texto"></span></div>
+
+<script src="https://accounts.google.com/gsi/client"></script>
+<script src="js/config.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/sheets.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
